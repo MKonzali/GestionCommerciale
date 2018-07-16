@@ -1,0 +1,83 @@
+<div class="container-fluid" >
+  <div class="card">
+    <div class="card-header title">Filtres</div>
+    <div class="card-body">
+      <div class="form-group" >
+        <div class="container"  style="display: flex; padding-bottom: 10px;margin-bottom: 10px"  >
+          <div class="horiz-container-left" *ngIf="!isMobileMenu()" >
+            <label class="form-label" >Nom client : </label>
+            <input type="text" class="form-control" [(ngModel)]="nom" style="margin-left: 10px" />
+            <label class="form-label" >Domaine d'activité : </label>
+            <input type="text" class="form-control" [(ngModel)]="domaine" style="margin-left: 10px" />
+          </div>
+          <div class="horiz-container-right"  *ngIf="!isMobileMenu()">
+            <label class="form-label" >Ville : </label>
+            <input type="text" class="form-control" [(ngModel)]="ville" style="margin-left: 10px" />
+            <label class="form-label" >Catégorie : </label>
+            <input type="text" class="form-control" [(ngModel)]="id_categorie" style="margin-left: 10px" />
+          </div>
+          <div style="align: center" *ngIf="isMobileMenu()" >
+            <label class="form-label" >Nom client : </label>
+            <input type="text" class="form-control" [(ngModel)]="nom" style="margin-left: 10px" />
+            <label class="form-label" >Domaine d'activité : </label>
+            <input type="text" class="form-control" [(ngModel)]="domaine" style="margin-left: 10px" />
+
+            <label class="form-label" >Ville : </label>
+            <input type="text" class="form-control" [(ngModel)]="ville" style="margin-left: 10px" />
+            <label class="form-label" >Catégorie : </label>
+            <input type="text" class="form-control" [(ngModel)]="id_categorie" style="margin-left: 10px" />
+          </div>
+        </div>
+        <div class="btn-container" style="text-align: center; padding-top: 10px" >
+       <button class="btn btn-primary" (click)="chercher()">Chercher</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header title">Résultat</div>
+    <div class="card-body">
+      <div class="content table-responsive table-full-width">
+        <table class="table">
+          <thead>
+          <tr>
+            <th class="text-center">Nom</th>
+            <th>Catégorie</th>
+            <th>Domaine</th>
+            <th class="text-right">Ville</th>
+            <th class="text-right">Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let c of pageClients.content">
+            <td class="text-center">{{c.nom_client}}</td>
+            <td>{{c.categorieClient}}</td>
+            <td>{{c.domaine}}</td>
+            <td class="text-right">{{c.ville}}</td>
+            <td class="td-actions text-right">
+              <a rel="tooltip" title="View " class="btn btn-info btn-simple btn-xs">
+                <i class="fa fa-user"></i>
+              </a>
+              <a rel="tooltip" title="Edit " (click)="onEditClient(c.id)" class="btn btn-success btn-simple btn-xs">
+                <i class="fa fa-edit"></i>
+              </a>
+              <a rel="tooltip" title="Remove" (click)="onDeleteClient(c)" class="btn btn-danger btn-simple btn-xs">
+                <i class="fa fa-times"></i>
+              </a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="container">
+        <ul class="nav nav-pills">
+          <li [ngClass]="{'btn-primary': i == currentPage}" *ngFor="let p of pages; let i = index">
+            <a (click)="goToPage(i)" class="nav-link clickable">{{i}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+

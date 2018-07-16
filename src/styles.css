@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+
+.form-label {
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+.horiz-container-left{
+  width: 38%;
+  float: left;
+}
+
+.horiz-container-right{
+  width: 38%;
+  float: right;
+  clear: right;
+  margin-left: 15px;
+}
